@@ -16,7 +16,7 @@
     $scope.getData = function () {
           $http({
             method: 'GET',
-            url:'/data/ticket-chart-formatted.json'
+            url:'/data/chartdata.json'
           }).
           success(function (data) {
             // attach this data to the scope
