@@ -1,0 +1,26 @@
+{
+    "chartpoints": [
+      
+          {
+            "Date": "16-07-2014",
+            "Birthdays":"16",
+            "Work Anniversaries": "20"
+          },
+          {
+            "Date": "17-07-2014",
+            "Birthdays":"123",
+            "Work Anniversaries": "110"
+          },
+          {
+            "Date": "18-07-2014",
+            "Birthdays":"116",
+            "Work Anniversaries": "127"
+          },
+          {
+            "Date": "19-07-2014",
+            "Birthdays":"5",
+            "Work Anniversaries": "3"
+          }
+
+    ]
+}

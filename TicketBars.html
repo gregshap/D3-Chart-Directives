@@ -1,0 +1,27 @@
+<head>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+
+     <div ng-app="VanDash2App">
+
+        <div ng-controller="VanCtrl">
+
+
+            <p class="error">{{sourcedataerror}}</p>
+
+            <!-- Here's where our visualization will go -->
+            <dash2-visualization val="sourcedata" 
+                                independentvariable={{"Date"}} 
+                                dependentlabel={{"Responses"}}>
+            
+        </div>
+
+    </div> 
+
+
+  <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.js"></script>
+  <script type="text/javascript" src="TicketBarsApp.js"> </script>
+
+</body>
