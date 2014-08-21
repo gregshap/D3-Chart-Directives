@@ -1,9 +1,9 @@
 
 
-  var VanDash2App = angular.module('VanDash2App', ['dash2.charts.groupedbar','dash2.charts.stackedbar']);
+  var Dash2App = angular.module('Dash2App', ['dash2.charts.groupedbar','dash2.charts.stackedbar']);
 
 
-  VanDash2App.controller('VanCtrl',function VanCtrl($scope,$http) {
+  Dash2App.controller('Dash2Ctrl',function Dash2Ctrl($scope,$http) {
       
 
     //Reformat from the web api format with items and junk, into arrays
