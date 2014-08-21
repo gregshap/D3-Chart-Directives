@@ -1,0 +1,228 @@
+{
+    "chartpoints": [
+      
+      {
+          "responseDate": "07/16/2014",
+          "adminRequestHistoryDetails": 16,
+          "supportRequestDetails": 20,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/17/2014",
+          "adminRequestHistoryDetails": 123,
+          "supportRequestDetails": 110,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/18/2014",
+          "adminRequestHistoryDetails": 116,
+          "supportRequestDetails": 127,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/19/2014",
+          "adminRequestHistoryDetails": 5,
+          "supportRequestDetails": 3,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/20/2014",
+          "adminRequestHistoryDetails": 9,
+          "supportRequestDetails": 2,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/21/2014",
+          "adminRequestHistoryDetails": 186,
+          "supportRequestDetails": 146,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/22/2014",
+          "adminRequestHistoryDetails": 174,
+          "supportRequestDetails": 129,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/23/2014",
+          "adminRequestHistoryDetails": 160,
+          "supportRequestDetails": 102,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/24/2014",
+          "adminRequestHistoryDetails": 179,
+          "supportRequestDetails": 127,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/25/2014",
+          "adminRequestHistoryDetails": 109,
+          "supportRequestDetails": 80,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/26/2014",
+          "adminRequestHistoryDetails": 5,
+          "supportRequestDetails": 0,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/27/2014",
+          "adminRequestHistoryDetails": 13,
+          "supportRequestDetails": 11,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/28/2014",
+          "adminRequestHistoryDetails": 114,
+          "supportRequestDetails": 110,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/29/2014",
+          "adminRequestHistoryDetails": 189,
+          "supportRequestDetails": 136,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/30/2014",
+          "adminRequestHistoryDetails": 178,
+          "supportRequestDetails": 115,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "07/31/2014",
+          "adminRequestHistoryDetails": 204,
+          "supportRequestDetails": 133,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/01/2014",
+          "adminRequestHistoryDetails": 142,
+          "supportRequestDetails": 125,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/02/2014",
+          "adminRequestHistoryDetails": 9,
+          "supportRequestDetails": 3,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/03/2014",
+          "adminRequestHistoryDetails": 2,
+          "supportRequestDetails": 2,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/04/2014",
+          "adminRequestHistoryDetails": 203,
+          "supportRequestDetails": 208,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/05/2014",
+          "adminRequestHistoryDetails": 151,
+          "supportRequestDetails": 138,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/06/2014",
+          "adminRequestHistoryDetails": 176,
+          "supportRequestDetails": 156,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/07/2014",
+          "adminRequestHistoryDetails": 191,
+          "supportRequestDetails": 148,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/08/2014",
+          "adminRequestHistoryDetails": 185,
+          "supportRequestDetails": 154,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/09/2014",
+          "adminRequestHistoryDetails": 10,
+          "supportRequestDetails": 0,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/10/2014",
+          "adminRequestHistoryDetails": 5,
+          "supportRequestDetails": 0,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/11/2014",
+          "adminRequestHistoryDetails": 238,
+          "supportRequestDetails": 204,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/12/2014",
+          "adminRequestHistoryDetails": 211,
+          "supportRequestDetails": 180,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/13/2014",
+          "adminRequestHistoryDetails": 215,
+          "supportRequestDetails": 232,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/14/2014",
+          "adminRequestHistoryDetails": 191,
+          "supportRequestDetails": 169,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/15/2014",
+          "adminRequestHistoryDetails": 137,
+          "supportRequestDetails": 184,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/16/2014",
+          "adminRequestHistoryDetails": 14,
+          "supportRequestDetails": 14,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/17/2014",
+          "adminRequestHistoryDetails": 31,
+          "supportRequestDetails": 0,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/18/2014",
+          "adminRequestHistoryDetails": 264,
+          "supportRequestDetails": 151,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/19/2014",
+          "adminRequestHistoryDetails": 195,
+          "supportRequestDetails": 132,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/20/2014",
+          "adminRequestHistoryDetails": 188,
+          "supportRequestDetails": 90,
+          "mailGun": 0
+        },
+        {
+          "responseDate": "08/21/2014",
+          "adminRequestHistoryDetails": 79,
+          "supportRequestDetails": 22,
+          "mailGun": 0
+        }
+
+    ]
+}
