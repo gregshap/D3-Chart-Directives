@@ -1,7 +1,8 @@
 
-
-
-  VanDash2App.directive('dash2Stacked', function() {
+var dash2;
+(function() {
+  var namespace = angular.module('dash2.charts.stackedbar', []);
+  namespace.directive('dash2Stacked', function() {
         return {
           restrict: 'E',
           scope: {
@@ -74,7 +75,7 @@
                   return;
                 }
 
-                //Get the base data for our chart. Here we want the chartpoints property from the external resource
+                //Get the base data for our chart. 
                 //Make a deep copy, because we're going to play around with the data format
                 var data = JSON.parse(JSON.stringify(newVal));
  
@@ -176,3 +177,4 @@
         }
 
   });
+})(dash2 || (dash2 = {}));

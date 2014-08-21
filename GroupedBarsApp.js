@@ -1,6 +1,6 @@
 
 
-  var VanDash2App = angular.module('VanDash2App', []);
+  var VanDash2App = angular.module('VanDash2App', ['dash2.charts.groupedbar','dash2.charts.stackedbar']);
 
 
   VanDash2App.controller('VanCtrl',function VanCtrl($scope,$http) {
