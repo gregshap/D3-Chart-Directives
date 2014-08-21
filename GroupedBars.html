@@ -12,15 +12,26 @@
             <p class="error">{{sourcedataerror}}</p>
 
             <!-- Here's where our visualization will go -->
-            <dash2-visualization val="sourcedata" 
+            <dash2-grouped val="sourcedata" 
                                 independentvariable={{"Date"}} 
                                 dependentlabel={{"Responses"}}>
             
+
+            <dash2-stacked val="sourcedata" 
+                                independentvariable={{"Date"}} 
+                                dependentlabel={{"Responses"}}>
+
+
+
+
         </div>
+
 
     </div> 
 
 
   <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.js"></script>
   <script type="text/javascript" src="GroupedBarsApp.js"> </script>
+  <script type="text/javascript" src="GroupedBarsDirective.js"> </script>
+  <script type="text/javascript" src="StackedBarsDirective.js"> </script>
 </body>
