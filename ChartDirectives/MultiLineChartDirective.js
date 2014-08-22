@@ -45,7 +45,7 @@ var dash2;
                   .attr('class', 'dash2-tooltip')
                   .offset([-10, 0])
                   .html(function(d) {
-                  return "<span>" + d.value + "</span>";
+                  return "<strong>" + d.label + " </strong> - <span>" + d.value + "</span>";
                 })
 
                 /**************************************************
@@ -57,6 +57,7 @@ var dash2;
                 var svg = d3.select(element[0]).append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
+                    .attr("class", "dash2-container")
                   .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -149,9 +150,6 @@ var dash2;
                     .style("stroke-width", "2px")
                     .style("stroke", function(d, i) {return color(i); })
                     .style("fill", "none")
-                  .transition()
-                      .delay( transitionDelay )
-                      .attr("d", function (d) { return line(d.values); });
 
                 fieldx0.selectAll("dot")
                     .data( function (d, i) { 
@@ -165,12 +163,15 @@ var dash2;
                       .attr("cx", function (d, i) { return x0(d.label) +  x0.rangeBand() / 2; })
                       .attr("cy", function (d) { return y(d.value) })
                       .attr("title", function (d,i) { return y(d.value); })
-                      .attr("fill", function (d,i,j) { return color(j) })
+                      .attr("color", function (d,i,j) { return color(j) })
                       .attr("class", "dash2-datapoint")
                       .on('mouseover', tip.show)
                       .on('mouseout', tip.hide);
 
-                  var legend = svg.selectAll(".legend")
+                  var legendContainer = svg.append("g")
+                    .attr("class", "dash2-legend-container");
+
+                  var legend = legendContainer.selectAll(".legend")
                       .data(childLineNames.slice())
                     .enter().append("g")
                       .attr("class", "legend")
@@ -189,8 +190,6 @@ var dash2;
                       .attr("dy", ".35em")
                       .style("text-anchor", "end")
                       .text(function(d) { return d; });
-
-
                 });
                 
             }

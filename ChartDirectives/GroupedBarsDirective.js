@@ -43,6 +43,13 @@ var dash2;
                     .orient("left")
                     .tickFormat(d3.format(".2s"));
 
+                var tip = d3.tip()
+                  .attr('class', 'dash2-tooltip')
+                  .offset([-10, 0])
+                  .html(function(d) {
+                  return "<span>" + d.value + "</span>";
+                })
+
                 /**************************************************
                 * End of data agnostic setup
                 ****************************************************/
@@ -52,6 +59,7 @@ var dash2;
                 var svg = d3.select(element[0]).append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
+                    .attr("class", "dash2-container")
                   .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -100,6 +108,8 @@ var dash2;
                   x1.domain(childBarNames).rangeRoundBands([0, x0.rangeBand()]);          //x1, the groups
                   y.domain([0, d3.max(data, function(d) { return d3.max(d.childBars, function(d) { return d.value; }); })]);
 
+                  svg.call(tip);
+
                   svg.append("g")
                       .attr("class", "x axis")
                       .attr("transform", "translate(0," + height + ")")
@@ -125,7 +135,6 @@ var dash2;
                   var fieldx0 = svg.selectAll(".TickVariable")
                           .data(data)
                         .enter().append("g")
-                          .attr("class", "g")
                           .attr("transform", function(d) { return "translate(" + x0(d[INDEPENDENT_VARIABLE]) + ",0)"; });
 
                   fieldx0.selectAll("rect")
@@ -135,7 +144,10 @@ var dash2;
                       .attr("x", function(d) { return x1(d.name); })
                       .attr("y", function(d) { return y(d.value); })
                       .attr("height", function(d) { return height - y(d.value); })
-                      .style("fill", function(d) { return color(d.name); });
+                      .attr("class", "dash2-datapoint")
+                      .on('mouseover', tip.show)
+                      .on('mouseout', tip.hide)
+                      .style("color", function(d) { return color(d.name); });
 
                   var legend = svg.selectAll(".legend")
                       .data(childBarNames.slice())

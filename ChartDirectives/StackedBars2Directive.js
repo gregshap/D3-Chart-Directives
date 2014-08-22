@@ -13,11 +13,11 @@ var dash2;
 
 
         		//GENERAL SETUP
-            	  var parseDate = d3.time.format("%Y-%m").parse,
+            var parseDate = d3.time.format("%Y-%m").parse,
 				    formatYear = d3.format("02d"),
 				    formatDate = function(d) { return "Q" + ((d.getMonth() / 3 | 0) + 1) + formatYear(d.getFullYear() % 100); };
 
-				  var margin = {top: 10, right: 20, bottom: 20, left: 60},
+				  var margin = {top: 10, right: 20, bottom: 20, left: 40},
 				      width = 960 - margin.left - margin.right,
 				      height = 500 - margin.top - margin.bottom;
 
@@ -48,7 +48,7 @@ var dash2;
 
 				  var stack = d3.layout.stack()
 				      .values(function(d) { return d.values; })
-				      .x(function(d) { return d.date; })
+				      .x(function(d) { return d.label; })
 				      .y(function(d) { return d.value; })
 				      .out(function(d, y0) { d.valueOffset = y0; });
 
@@ -58,11 +58,17 @@ var dash2;
 				  var svg = d3.select("body").append("svg")
 				      .attr("width", width + margin.left + margin.right)
 				      .attr("height", height + margin.top + margin.bottom)
+				      .attr("class", "dash2-container")
 				    .append("g")
 				      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+				  	var tip = d3.tip()
+                  .attr('class', 'dash2-tooltip')
+                  .offset([-10, 0])
+                  .html(function(d) {
+                  return "<strong>"+ d.label + "<span>" + d.value + "</span>";
+                })
 		      //END GENERAL SETUP
-
-
 
           		scope.$watch('val', function (newVal, oldVal) {
 
@@ -83,26 +89,23 @@ var dash2;
 
 				     var logdata = JSON.parse(JSON.stringify(data));
 
-				     console.log(logdata);
-
 				    data.forEach(function(d) {
-				      d.date = parseDate(d.date);
+				      d.label = parseDate(d.date);
 				      d.value = +d.value;
 				    });
 
 				    var dataByGroup = nest.entries(data);
 
 				    stack(dataByGroup);
-				    x.domain(dataByGroup[0].values.map(function(d) { return d.date; }));
+				    console.log (dataByGroup);
+				    x.domain(dataByGroup[0].values.map(function(d) { return d.label; }));
 				    y0.domain(dataByGroup.map(function(d) { return d.key; }));
 				    y1.domain([0, d3.max(data, function(d) { return d.value; })]).range([y0.rangeBand(), 0]);
   					y2.domain([0, d3.max(data, function(d) { return d.value })]);
 
   					color.domain([0, Math.floor(dataByGroup.length / 2) ,dataByGroup.length - 1])
 
-  					console.log(d3.max(data, function(d) { return d.value }));
-
-  			
+  					svg.call(tip);
 
 				    var group = svg.selectAll(".group")
 				        .data(dataByGroup)
@@ -113,11 +116,14 @@ var dash2;
 				    group.selectAll("rect")
 				        .data(function(d) { return d.values; })
 				      .enter().append("rect")
-				        .style("fill", function(d) { return color(d.group); })
-				        .attr("x", function(d) { return x(d.date); })
+				        .attr("x", function(d) { return x(d.label); })
 				        .attr("y", function(d) { return y1(d.value); })
 				        .attr("width", x.rangeBand())
-				        .attr("height", function(d) { return y0.rangeBand() - y1(d.value); });
+				        .attr("height", function(d) { return y0.rangeBand() - y1(d.value); })
+				        .style("color", function(d) { return color(d.group); })
+				        .attr("class", "dash2-datapoint")
+	              .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
 
 				    svg.filter(function(d, i) { return !i; }).append("g")
 				        .attr("class", "x axis")
@@ -139,6 +145,26 @@ var dash2;
 				    //   // clearTimeout(timeout);
 				    //   transitionStacked();
 				    // }
+				    console.log(dataByGroup)
+              var legend = svg.selectAll(".legend")
+                .data(dataByGroup)
+              .enter().append("g")
+                .attr("class", "legend")
+                .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+            legend.append("rect")
+                .attr("x", width - 18)
+                .attr("width", 18)
+                .attr("height", 18)
+				        .style("fill", function (d, i) {  return color(i) });
+
+            legend.append("text")
+                .attr("x", width - 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .style("text-anchor", "end")
+                .text(function(d) { console.log(d); return d.label; });
+
 
 				    function transitionMultiples() {
 				      var t = svg.transition().duration(750),

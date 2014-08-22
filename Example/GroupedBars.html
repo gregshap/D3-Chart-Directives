@@ -33,36 +33,43 @@
     position:relative;
   }
   .dash2-tooltip{
+    transition:opacity 200ms;
     background: white;
     padding: 10px;
     font-family: arial, sans-serif;
     border: 2px solid #ccc;
+}
 
+  .dash2-container .axis path{
+      fill: #EEE;
+      stroke: #ccc;
+      stroke-width: 2;
+      shape-rendering: crispEdges;
+  }
 
+  .dash2-legend-container{
+    fill: white;
+    fill-opacity: .5;
+    stroke: #ccc;
+    stroke-width: 2;
+    stroke-opacity: 1;
+    padding: 10px;
+  }
+   .dash2-legend-container text, .dash2-legend-container rect{
+      fill: #666;
+      fill-opacity: 1;
+      stroke: none;
+    }
+
+  .dash2-datapoint{
+    fill: currentColor;
   }
 
   .dash2-datapoint:hover{
-    stroke: black;
-    stroke-width: 2;
-  }
-  .dash2-legend{
-    fill:#fff;
-    stroke: #ccc;
-    stroke-width: 2;
-  }
-
-  circle:hover.dash2-datapoint:after{
-    display: block;
-    background: white;
-    content: attr(data-tooltip);
-    position: absolute;
-    color: #333;
-    bottom: 1.5em;
-    right: 0px;
-    width: 8em;
-    text-align: center;
-    padding: 4px;
-    border: 2px solid #CCC;
+    stroke: currentColor;
+    stroke-width: 8;
+    stroke-opacity: .3;
+    fill-opacity: .8;
   }
 </style>
 
