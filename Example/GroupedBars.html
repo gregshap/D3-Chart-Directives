@@ -33,8 +33,37 @@
 
     </div> 
 
+<style type="text/css">
+  .dash2-datapoint{
+    position:relative;
+  }
+  .dash2-tooltip{
+    position: absolute;
+    bottom: 0;
+  }
+
+  .dash2-datapoint:hover{
+    stroke: black;
+    stroke-width: 2;
+  }
+
+  circle:hover.dash2-datapoint:after{
+    display: block;
+    background: white;
+    content: attr(data-tooltip);
+    position: absolute;
+    color: #333;
+    bottom: 1.5em;
+    right: 0px;
+    width: 8em;
+    text-align: center;
+    padding: 4px;
+    border: 2px solid #CCC;
+  }
+</style>
 
   <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
   <script type="text/javascript" src="GroupedBarsApp.js"> </script>
   <script type="text/javascript" src="/ChartDirectives/GroupedBarsDirective.js"> </script>
   <script type="text/javascript" src="/ChartDirectives/StackedBarsDirective.js"> </script>

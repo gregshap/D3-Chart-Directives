@@ -8,10 +8,6 @@ var dash2;
               val: '='
             },
             link: function (scope, element, attrs) {
-
-                console.log("indyVar");
-                console.log(attrs.independentvariable);
-                console.log("indyVar");
                 
                 /**************************************************
                 *
@@ -43,6 +39,13 @@ var dash2;
                     .orient("left")
                     .tickFormat(d3.format(".2s"));
 
+                var tip = d3.tip()
+                  .attr('class', 'dash2-tip')
+                  .offset([-10, 0])
+                  .html(function(d) {
+                  return "<strong>Frequency:</strong> <span>" + d.value + "</span>";
+                })
+
                 /**************************************************
                 * End of data agnostic setup
                 ****************************************************/
@@ -70,7 +73,6 @@ var dash2;
 
                   // if 'val' is undefined, exit
                   if (!newVal) {
-                    console.log("exit directive");
                     return;
                   }
 
@@ -84,9 +86,6 @@ var dash2;
                   var childLineNames = d3.keys(data[0]).filter(function(key) { 
                                                                         return key !== INDEPENDENT_VARIABLE; 
                                                                       });
-
-                  console.log(childLineNames);
-                  console.log(d3.keys(data[0]));
 
                   //Add the child field values as a separate property
                   var seriesData = childLineNames.map(function(name) { 
@@ -103,12 +102,12 @@ var dash2;
 
                   x0.domain(data.map(function(d) { return d[INDEPENDENT_VARIABLE]; }));   //x0, the ticks across the x axis
                   x1.domain(childLineNames).rangeRoundBands([0, x0.rangeBand()]);          //x1, the groups
-                  y.domain([0, d3.max(seriesData, function(d) { console.log(d); 
+                  y.domain([0, d3.max(seriesData, function(d) {
                     return d3.max(d.values, function(d){return d.value}) 
                   })]);
                   color.domain([0, Math.floor(seriesData.length / 2) ,seriesData.length - 1])
-                  
-                  console.log(y(seriesData));
+
+                  svg.call(tip);
 
                   svg.append("g")
                       .attr("class", "x axis")
@@ -120,7 +119,7 @@ var dash2;
                             .attr("dy", ".15em")
                             .attr("transform", function(d) {
                                 return "rotate(-65)" 
-                            });
+                            })
 
                   svg.append("g")
                       .attr("class", "y axis")
@@ -137,18 +136,35 @@ var dash2;
                     .enter().append("g")
                       .attr("class", "series")
 
-
                   var line = d3.svg.line()
                       .interpolate("linear")
                       .x(function (d) { return x0(d.label) + x0.rangeBand() / 2; })
                       .y(function (d) { return y(d.value); });
 
-                fieldx0.append("path")
+                var linePath = fieldx0.append("path")
                     .attr("class", "line")
-                  .attr("d", function (d) { console.log(line(d.values)); return line(d.values); })
+                  .attr("d", function (d) { return line(d.values); })
                     .style("stroke-width", "4px")
                     .style("stroke", function(d, i) {return color(i); })
                     .style("fill", "none");
+
+                fieldx0.selectAll("dot")
+                    .data( function (d, i) { 
+                      console.log(i);
+                      var indexedData = d.values;
+                      indexedData.colorIndex = i;
+                      return indexedData; })
+                  .enter()
+                  .append("circle")
+                    .attr("r", 6.5)
+                    .attr("cx", function (d, i) { return x0(d.label) +  x0.rangeBand() / 2; })
+                    .attr("cy", function (d) { return y(d.value) })
+                    .attr("title", function (d,i) { return y(d.value); })
+                    .attr("fill", function (d,i,j) { return color(j) })
+                    .attr("class", "dash2-datapoint")
+                    .on('mouseover', tip.show)
+                    .on('mouseout', tip.hide);
+
 
                   var legend = svg.selectAll(".legend")
                       .data(childLineNames.slice())
