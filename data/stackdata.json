@@ -1,0 +1,17 @@
+{
+  "chartpoints":[
+  {"group":"1"  ,"date":"2008-01" ,"value":"10"},
+  {"group":"1"  ,"date":"2008-04" ,"value":"8"},
+  {"group":"1"  ,"date":"2008-07" ,"value":"14"},
+  {"group":"2"  ,"date":"2008-01" ,"value":"3"},
+  {"group":"2"  ,"date":"2008-04" ,"value":"3.5"},
+  {"group":"2"  ,"date":"2008-07" ,"value":"5"},
+  {"group":"3"  ,"date":"2008-01" ,"value":"10"},
+  {"group":"3"  ,"date":"2008-04" ,"value":"8"},
+  {"group":"3"  ,"date":"2008-07" ,"value":"14"},
+  {"group":"4"  ,"date":"2008-01" ,"value":"3"},
+  {"group":"4"  ,"date":"2008-04" ,"value":"3.5"},
+  {"group":"4"  ,"date":"2008-07" ,"value":"5"}
+  ]
+}
+  
