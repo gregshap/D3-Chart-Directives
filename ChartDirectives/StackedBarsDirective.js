@@ -33,7 +33,7 @@ var dash2;
                   .range([height, 0]);
 
               var color = d3.scale.ordinal()
-                  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+                  .range(["#1caa58", "#E44492", "#3498db"]);
 
               var xAxis = d3.svg.axis()
                   .scale(x0)
@@ -106,6 +106,8 @@ var dash2;
                 x0.domain(data.map(function(d) { return d[INDEPENDENT_VARIABLE]; }));   //x0, the ticks across the x axis
                 x1.domain(childBarNames).rangeRoundBands([0, x0.rangeBand()]);          //x1, the groups
                 y.domain([0, d3.max(data, function(d) { return d3.max(d.childBars, function(d) { return d.value; }); })]);
+
+                color.domain([0, Math.floor(seriesData.length / 2) ,seriesData.length - 1])
 
 
                 //Add the horizontal axis

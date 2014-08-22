@@ -15,11 +15,6 @@
             <dash2-grouped val="sourcedata" 
                                 independentvariable={{"Date"}} 
                                 dependentlabel={{"Responses"}}>
-            
-
-            <dash2-stacked val="sourcedata" 
-                                independentvariable={{"Date"}} 
-                                dependentlabel={{"Responses"}}>
 
             <dash2-stacked2 val="sourceStackData" 
                                 independentvariable={{"date"}} 
@@ -38,12 +33,21 @@
     position:relative;
   }
   .dash2-tooltip{
-    position: absolute;
-    bottom: 0;
+    background: white;
+    padding: 10px;
+    font-family: arial, sans-serif;
+    border: 2px solid #ccc;
+
+
   }
 
   .dash2-datapoint:hover{
     stroke: black;
+    stroke-width: 2;
+  }
+  .dash2-legend{
+    fill:#fff;
+    stroke: #ccc;
     stroke-width: 2;
   }
 

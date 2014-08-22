@@ -27,7 +27,7 @@ var dash2;
                 var y = d3.scale.linear()
                     .range([height, 0]);
 
-                var color = d3.scale.ordinal()
+                var color = d3.scale.linear()
                     .range(["#1caa58", "#E44492", "#3498db"]);
 
                 var xAxis = d3.svg.axis()
@@ -39,11 +39,13 @@ var dash2;
                     .orient("left")
                     .tickFormat(d3.format(".2s"));
 
+                var transitionDelay = 250;
+
                 var tip = d3.tip()
-                  .attr('class', 'dash2-tip')
+                  .attr('class', 'dash2-tooltip')
                   .offset([-10, 0])
                   .html(function(d) {
-                  return "<strong>Frequency:</strong> <span>" + d.value + "</span>";
+                  return "<span>" + d.value + "</span>";
                 })
 
                 /**************************************************
@@ -143,10 +145,13 @@ var dash2;
 
                 var linePath = fieldx0.append("path")
                     .attr("class", "line")
-                  .attr("d", function (d) { return line(d.values); })
-                    .style("stroke-width", "4px")
+                    .attr("d", function (d) { console.log(d.values); return line( d.values ); })
+                    .style("stroke-width", "2px")
                     .style("stroke", function(d, i) {return color(i); })
-                    .style("fill", "none");
+                    .style("fill", "none")
+                  .transition()
+                      .delay( transitionDelay )
+                      .attr("d", function (d) { return line(d.values); });
 
                 fieldx0.selectAll("dot")
                     .data( function (d, i) { 
@@ -157,14 +162,13 @@ var dash2;
                   .enter()
                   .append("circle")
                     .attr("r", 6.5)
-                    .attr("cx", function (d, i) { return x0(d.label) +  x0.rangeBand() / 2; })
-                    .attr("cy", function (d) { return y(d.value) })
-                    .attr("title", function (d,i) { return y(d.value); })
-                    .attr("fill", function (d,i,j) { return color(j) })
-                    .attr("class", "dash2-datapoint")
-                    .on('mouseover', tip.show)
-                    .on('mouseout', tip.hide);
-
+                      .attr("cx", function (d, i) { return x0(d.label) +  x0.rangeBand() / 2; })
+                      .attr("cy", function (d) { return y(d.value) })
+                      .attr("title", function (d,i) { return y(d.value); })
+                      .attr("fill", function (d,i,j) { return color(j) })
+                      .attr("class", "dash2-datapoint")
+                      .on('mouseover', tip.show)
+                      .on('mouseout', tip.hide);
 
                   var legend = svg.selectAll(".legend")
                       .data(childLineNames.slice())
@@ -176,6 +180,7 @@ var dash2;
                       .attr("x", width - 18)
                       .attr("width", 18)
                       .attr("height", 18)
+                      .attr("class", "dash2-legend")
                       .style("fill", function (d,i) {return color(i); });
 
                   legend.append("text")

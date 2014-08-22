@@ -24,7 +24,11 @@ var dash2;
 				  var y0 = d3.scale.ordinal()
 				      .rangeRoundBands([height, 0], .2);
 
-				  var y1 = d3.scale.linear();
+				  var y1 = d3.scale.linear()
+				  				.rangeRound([height,0]);
+
+				  var y2 = d3.scale.linear()
+				  				.rangeRound([height, 0])
 
 				  var x = d3.scale.ordinal()
 				      .rangeRoundBands([0, width], .1, 0);
@@ -33,6 +37,11 @@ var dash2;
 				      .scale(x)
 				      .orient("bottom")
 				      .tickFormat(formatDate);
+
+          var yAxis = d3.svg.axis()
+              .scale(y2)
+              .orient("left")
+              .tickFormat(d3.format(".2s"));
 
 				  var nest = d3.nest()
 				      .key(function(d) { return d.group; });
@@ -43,7 +52,8 @@ var dash2;
 				      .y(function(d) { return d.value; })
 				      .out(function(d, y0) { d.valueOffset = y0; });
 
-				  var color = d3.scale.category10();
+          var color = d3.scale.linear()
+              .range(["#1caa58", "#E44492", "#3498db"]);
 
 				  var svg = d3.select("body").append("svg")
 				      .attr("width", width + margin.left + margin.right)
@@ -86,19 +96,19 @@ var dash2;
 				    x.domain(dataByGroup[0].values.map(function(d) { return d.date; }));
 				    y0.domain(dataByGroup.map(function(d) { return d.key; }));
 				    y1.domain([0, d3.max(data, function(d) { return d.value; })]).range([y0.rangeBand(), 0]);
+  					y2.domain([0, d3.max(data, function(d) { return d.value })]);
+
+  					color.domain([0, Math.floor(dataByGroup.length / 2) ,dataByGroup.length - 1])
+
+  					console.log(d3.max(data, function(d) { return d.value }));
+
+  			
 
 				    var group = svg.selectAll(".group")
 				        .data(dataByGroup)
 				      .enter().append("g")
 				        .attr("class", "group")
 				        .attr("transform", function(d) { return "translate(0," + y0(d.key) + ")"; });
-
-				    group.append("text")
-				        .attr("class", "group-label")
-				        .attr("x", -6)
-				        .attr("y", function(d) { return y1(d.values[0].value / 2); })
-				        .attr("dy", ".35em")
-				        .text(function(d) { return "Group " + d.key; });
 
 				    group.selectAll("rect")
 				        .data(function(d) { return d.values; })
@@ -109,10 +119,15 @@ var dash2;
 				        .attr("width", x.rangeBand())
 				        .attr("height", function(d) { return y0.rangeBand() - y1(d.value); });
 
-				    group.filter(function(d, i) { return !i; }).append("g")
+				    svg.filter(function(d, i) { return !i; }).append("g")
 				        .attr("class", "x axis")
-				        .attr("transform", "translate(0," + y0.rangeBand() + ")")
+				        .attr("transform", "translate(0," + (height - 20) + ")")
 				        .call(xAxis);
+
+				    svg.filter(function(d, i) { return !i; }).append("g")
+				        .attr("class", "y axis")
+				        .attr("transform", "translate(" + 0 + ","+ -20 +")")
+				        .call(yAxis);
 
 				    // d3.selectAll("input").on("change", change);
 
